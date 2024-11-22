@@ -23,5 +23,5 @@ use Zenstruck\Foundry\Tests\Fixture\Entity\Contact\StandardContact;
 class StandardAddress extends Address
 {
     #[ORM\OneToOne(targetEntity: StandardContact::class, mappedBy: 'address')]
-    protected Contact|null $contact = null;
+    protected ?Contact $contact = null;
 }

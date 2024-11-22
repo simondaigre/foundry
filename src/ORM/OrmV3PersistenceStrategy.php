@@ -48,9 +48,7 @@ final class OrmV3PersistenceStrategy extends AbstractORMPersistenceStrategy
             $inversedAssociation->targetEntity,
             allow_string: true
         )) { // is_a() handles inheritance as well
-            throw new \LogicException(
-                "Cannot find correct association named \"{$field}\" between classes [parent: \"{$parent}\", child: \"{$child}\"]"
-            );
+            throw new \LogicException("Cannot find correct association named \"{$field}\" between classes [parent: \"{$parent}\", child: \"{$child}\"]");
         }
 
         if (!$inversedAssociation instanceof InverseSideMapping) {

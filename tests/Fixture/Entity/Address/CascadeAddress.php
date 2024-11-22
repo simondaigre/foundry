@@ -23,5 +23,5 @@ use Zenstruck\Foundry\Tests\Fixture\Entity\Contact\CascadeContact;
 class CascadeAddress extends Address
 {
     #[ORM\OneToOne(targetEntity: CascadeContact::class, mappedBy: 'address', cascade: ['persist', 'remove'])]
-    protected Contact|null $contact = null;
+    protected ?Contact $contact = null;
 }

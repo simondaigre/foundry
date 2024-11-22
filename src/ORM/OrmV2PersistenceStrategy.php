@@ -50,16 +50,14 @@ final class OrmV2PersistenceStrategy extends AbstractORMPersistenceStrategy
             $inversedAssociation['targetEntity'],
             allow_string: true
         )) { // is_a() handles inheritance as well
-            throw new \LogicException(
-                "Cannot find correct association named \"{$field}\" between classes [parent: \"{$parent}\", child: \"{$child}\"]"
-            );
+            throw new \LogicException("Cannot find correct association named \"{$field}\" between classes [parent: \"{$parent}\", child: \"{$child}\"]");
         }
 
-        if (!in_array(
-                $inversedAssociation['type'],
-                [ClassMetadataInfo::ONE_TO_MANY, ClassMetadataInfo::ONE_TO_ONE],
-                true
-            )
+        if (!\in_array(
+            $inversedAssociation['type'],
+            [ClassMetadataInfo::ONE_TO_MANY, ClassMetadataInfo::ONE_TO_ONE],
+            true
+        )
             || !isset($inversedAssociation['mappedBy'])
         ) {
             return null;
