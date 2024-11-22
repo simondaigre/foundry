@@ -211,14 +211,6 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
     /**
      * @test
      */
-    public function one_to_one_inverse(): void
-    {
-        $this->markTestSkipped('Not supported. Should it be?');
-    }
-
-    /**
-     * @test
-     */
     public function many_to_one_unmanaged_raw_entity(): void
     {
         $address = unproxy(static::addressFactory()->create(['city' => 'Some city']));
@@ -290,6 +282,22 @@ abstract class EntityFactoryRelationshipTestCase extends KernelTestCase
         $this->assertCount(3, $tag->getSecondaryContacts());
         static::tagFactory()::assert()->count(1);
         static::contactFactory()::assert()->count(6);
+    }
+
+    /**
+     * @test
+     */
+    public function inversed_one_to_one(): void
+    {
+        $addressFactory = $this->addressFactory();
+        $contactFactory = $this->contactFactory();
+
+        $address = $addressFactory->create(['contact' => $contactFactory]);
+
+        self::assertNotNull($address->getContact());
+
+        $addressFactory::assert()->count(1);
+        $contactFactory::assert()->count(1);
     }
 
     /**
