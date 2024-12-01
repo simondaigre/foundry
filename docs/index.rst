@@ -2110,7 +2110,7 @@ Later, you can access the story's state when creating other fixtures:
         use Zenstruck\Foundry\Story;
 
         /**
-         * @method static Proxy<Category> php()
+         * @method static Category&Proxy<Category> php()
          */
         final class CategoryStory extends Story
         {
